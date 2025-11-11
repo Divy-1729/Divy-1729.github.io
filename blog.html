@@ -72,9 +72,10 @@
           return;
         }
 
-        const html = blogPosts.map(post => {
+        const html = blogPosts.map((post, index) => {
           // Default to posts/<slug>.html. If your hosting uses folder-per-post, change to `posts/${post.slug}/`
           const url = `posts/${post.slug}.html`;
+          const hrElement = index < blogPosts.length - 1 ? '<hr class="post-divider" />' : '';
           return ''
             + '<article class="post-preview">'
             +   `<a class="post-link" href="${url}">`
@@ -82,7 +83,8 @@
             +   '</a>'
             +   `<div class="post-meta">${formatDate(post.date)}</div>`
             +   `<p class="post-excerpt">${post.description}</p>`
-            + '</article>';
+            + '</article>'
+            + hrElement;
         }).join('\n');
 
         blogPostsContainer.innerHTML = html;
