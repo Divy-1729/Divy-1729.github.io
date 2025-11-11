@@ -7,18 +7,19 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     .blog-post-section {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color, #e0e0e0);
+      background: rgba(30, 35, 45, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       padding: 24px;
       margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     
     .blog-post-section:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.2);
     }
     
     .post-preview {
@@ -27,17 +28,19 @@
     
     .post-title {
       margin: 0 0 12px 0;
-      color: var(--heading-color, #1a1a1a);
+      color: #ffffff !important;
+      font-size: 24px;
+      font-weight: 600;
     }
     
     .post-meta {
-      color: var(--text-secondary, #666);
+      color: #b0b0b0 !important;
       font-size: 14px;
       margin-bottom: 12px;
     }
     
     .post-excerpt {
-      color: var(--text-primary, #333);
+      color: #e0e0e0 !important;
       line-height: 1.6;
       margin: 0;
     }
@@ -48,7 +51,7 @@
     }
     
     .post-link:hover .post-title {
-      color: var(--link-color, #0066cc);
+      color: #66b3ff !important;
     }
   </style>
 </head>
@@ -90,7 +93,6 @@
     </footer>
   <script>
     try {
-      // Blog posts data
       const blogPosts = [
         {
           date: '2025-11-11',
@@ -100,7 +102,6 @@
         }
       ];
 
-      // Helper to format ISO date to a nicer string
       function formatDate(iso) {
         if (!iso) return '';
         const d = new Date(iso);
@@ -108,13 +109,12 @@
         return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
       }
 
-      // Render posts into the page
       function renderBlogPosts() {
         const blogPostsContainer = document.getElementById('blog-posts');
         if (!blogPostsContainer) return;
 
         if (!blogPosts || blogPosts.length === 0) {
-          blogPostsContainer.innerHTML = '<p style="color: var(--text-secondary);">Coming Soon</p>';
+          blogPostsContainer.innerHTML = '<p style="color: #b0b0b0;">Coming Soon</p>';
           return;
         }
 
@@ -135,14 +135,12 @@
         blogPostsContainer.innerHTML = html;
       }
 
-      // Initialize
       renderBlogPosts();
     } catch (err) {
-      // Useful quick debugging info
       console.error('Error rendering blog page:', err);
       const blogPostsContainer = document.getElementById('blog-posts');
       if (blogPostsContainer) {
-        blogPostsContainer.innerHTML = '<p style="color: var(--text-secondary);">Error loading posts. Check console for details.</p>';
+        blogPostsContainer.innerHTML = '<p style="color: #b0b0b0;">Error loading posts. Check console for details.</p>';
       }
     }
   </script>
