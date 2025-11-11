@@ -1,37 +1,72 @@
-/ Blog posts data
-const blogPosts = [
-    {
-        date: '2025-01-15',
-        title: 'Getting Started with Modern Web Development',
-        description: 'An overview of the latest tools and frameworks that make web development faster and more efficient. Learn about the ecosystem and best practices.',
-        slug: 'getting-started-modern-web-dev'
-    },
-    {
-        date: '2025-01-08',
-        title: 'Understanding Async Programming',
-        description: 'A deep dive into asynchronous programming patterns, promises, async/await, and how to handle complex asynchronous flows in JavaScript.',
-        slug: 'understanding-async-programming'
-    },
-    {
-        date: '2025-01-01',
-        title: 'The Future of Frontend Frameworks',
-        description: 'Exploring emerging trends in frontend development, from server components to new rendering strategies and what they mean for developers.',
-        slug: 'future-of-frontend-frameworks'
-    },
-    {
-        date: '2024-12-20',
-        title: 'Building Scalable Applications',
-        description: 'Best practices for architecting applications that can grow with your user base. Learn about microservices, caching strategies, and database optimization.',
-        slug: 'building-scalable-applications'
-    }
-];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="main">
+    <div class="container">
+      <h1>Blog</h1>
+      <div id="blog-posts" class="posts-list"></div>
+    </div>
+  </main>
 
-// Format date to readable format
-@@ -43,7 +19,7 @@ function renderBlogPosts() {
+  <script type="module">
+    // Blog posts data
+    const blogPosts = [
+      // Added the new post entry so it appears in the blog index
+      {
+        date: '2025-11-11',
+        title: 'My favorite music to listen to',
+        description: "I've spent some time curating my music taste. I spend a lot of time listening to music, so here are some recommendations.",
+        slug: 'music_post'
+      }
+    ];
+
+    // Helper to format date to a nicer string
+    function formatDate(iso) {
+      try {
+        const d = new Date(iso);
+        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      } catch {
+        return iso;
+      }
     }
 
-    if (blogPosts.length === 0) {
-        blogPostsContainer.innerHTML = '<p style="color: var(--text-secondary);">No blog posts yet. Check back soon!</p>';
+    // Render posts into the page
+    function renderBlogPosts() {
+      const blogPostsContainer = document.getElementById('blog-posts');
+      if (!blogPostsContainer) return;
+
+      if (blogPosts.length === 0) {
         blogPostsContainer.innerHTML = '<p style="color: var(--text-secondary);">Coming Soon</p>';
         return;
+      }
+
+      const html = blogPosts.map(post => {
+        // linkTo tries both posts/<slug>.html and /posts/<slug>/ to match different setups
+        const link1 = `posts/${post.slug}.html`;
+        const link2 = `posts/${post.slug}/`;
+        const url = link1; // choose link1 by default; adjust if your hosting uses folder-per-post
+        return `
+          <article class="post-preview">
+            <a class="post-link" href="${url}">
+              <h2 class="post-title">${post.title}</h2>
+            </a>
+            <div class="post-meta">${formatDate(post.date)}</div>
+            <p class="post-excerpt">${post.description}</p>
+          </article>
+        `;
+      }).join('\n');
+
+      blogPostsContainer.innerHTML = html;
     }
+
+    // Run
+    renderBlogPosts();
+  </script>
+</body>
+</html>
