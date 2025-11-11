@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST_TITLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <!-- MathJax for LaTeX support -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            }
+        };
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="../index.html">Home</a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../blog.html" class="nav-link">Blog</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="https://github.com/Divy-1729" class="nav-link" target="_blank" rel="noopener noreferrer">
+                    GitHub ↗
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <a href="../blog.html" class="back-link">Back to blog</a>
+            <article class="blog-post">
+                <div class="post-date">POST_DATE</div>
+                <h1 class="post-title">POST_TITLE</h1>
+                <div class="post-content">
+                    <!-- Your blog post content goes here -->
+                    <!-- You can use LaTeX math notation:
+                         Inline math: $E = mc^2$
+                         Display math: 
+                         $$
+                         \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+                         $$
+                    -->
+                    
+                    <p>This is a template for blog posts. Replace this content with your own.</p>
+                    
+                    <h2>Example with LaTeX</h2>
+                    <p>Here's an inline equation: $E = mc^2$</p>
+                    
+                    <p>And here's a displayed equation:</p>
+                    $$
+                    \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+                    $$
+                    
+                    <h2>Writing Your Post</h2>
+                    <p>To create a new blog post:</p>
+                    <ol>
+                        <li>Copy this template file</li>
+                        <li>Rename it to match your post slug (e.g., <code>my-post-title.html</code>)</li>
+                        <li>Replace <code>POST_TITLE</code> with your post title</li>
+                        <li>Replace <code>POST_DATE</code> with the publication date</li>
+                        <li>Write your content in the <code>post-content</code> div</li>
+                        <li>Add the post to the <code>blogPosts</code> array in <code>script.js</code></li>
+                    </ol>
+                    
+                    <h2>LaTeX Examples</h2>
+                    <p>You can use standard LaTeX syntax:</p>
+                    <ul>
+                        <li>Inline: <code>$x^2 + y^2 = r^2$</code> renders as $x^2 + y^2 = r^2$</li>
+                        <li>Display: <code>$$\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$$</code> renders as a centered equation</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="../index.html" class="footer-link">Home</a>
+                <a href="../blog.html" class="footer-link">Blog</a>
+                <a href="../about.html" class="footer-link">About</a>
+                <a href="https://github.com/Divy-1729" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

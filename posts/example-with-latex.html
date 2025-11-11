@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Mathematical Equations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <!-- MathJax for LaTeX support -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            }
+        };
+    </script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="../index.html">Home</a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../blog.html" class="nav-link">Blog</a>
+                <a href="../about.html" class="nav-link">About</a>
+                <a href="https://github.com/Divy-1729" class="nav-link" target="_blank" rel="noopener noreferrer">
+                    GitHub ↗
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <a href="../blog.html" class="back-link">Back to blog</a>
+            <article class="blog-post">
+                <div class="post-date">January 15, 2025</div>
+                <h1 class="post-title">Understanding Mathematical Equations</h1>
+                <div class="post-content">
+                    <p>This is an example blog post demonstrating LaTeX support. You can write mathematical equations using standard LaTeX notation.</p>
+                    
+                    <h2>Inline Equations</h2>
+                    <p>You can write inline equations like Einstein's famous equation $E = mc^2$, or the quadratic formula $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.</p>
+                    
+                    <h2>Display Equations</h2>
+                    <p>For larger equations, use display mode:</p>
+                    $$
+                    \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+                    $$
+                    
+                    <p>Or the definition of the derivative:</p>
+                    $$
+                    f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+                    $$
+                    
+                    <h2>Complex Equations</h2>
+                    <p>You can write more complex mathematical expressions:</p>
+                    $$
+                    \sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+                    $$
+                    
+                    <p>The Euler-Lagrange equation:</p>
+                    $$
+                    \frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}} = 0
+                    $$
+                    
+                    <h2>Matrices and Vectors</h2>
+                    <p>You can also write matrices:</p>
+                    $$
+                    \begin{bmatrix}
+                    a & b \\
+                    c & d
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                    x \\
+                    y
+                    \end{bmatrix}
+                    =
+                    \begin{bmatrix}
+                    ax + by \\
+                    cx + dy
+                    \end{bmatrix}
+                    $$
+                    
+                    <p>This demonstrates how easy it is to include mathematical notation in your blog posts!</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="../index.html" class="footer-link">Home</a>
+                <a href="../blog.html" class="footer-link">Blog</a>
+                <a href="../about.html" class="footer-link">About</a>
+                <a href="https://github.com/Divy-1729" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

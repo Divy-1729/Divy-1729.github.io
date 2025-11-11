@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="index.html">Home</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="https://github.com/Divy-1729" class="nav-link" target="_blank" rel="noopener noreferrer">
+                    GitHub ↗
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <h1 class="page-title">About</h1>
+            <div class="about-content">
+                <p class="about-text">
+                    My name is Divy. I'm a second year at the University of Toronto studying ML and Math. This blog is my space to share what I've been learning about AI/ML and keeping my progress up to date.
+                </p>
+                <p class="about-text">
+                    My interests are broadly in Deep Learning, Generative AI, AI in Healthcare, AI Safety and Alignment, Abstract Algebra and Computational Neuroscience. I also enjoy a variety of music, primarily along Rock, Shoegaze and Metal.
+                </p>
+
+                <h2 class="section-title">Current Positions</h2>
+                <ol class="about-ordered-list">
+                    <li>
+                        <strong>ML Research Assistant at Consens Lab</strong>
+                        <p class="list-description">Doing work in mapping brain activity for grasping with an RL agent's internal representations.</p>
+                        <p class="list-link"><a href="https://www.utsc.utoronto.ca/people/niemeier/" target="_blank">Check out the lab here!</a></p>
+                    </li>
+                    <li>
+                        <strong>UR2PhD Research Student</strong>
+                        <p class="list-description">Working with Dr. Brian Harrington to develop AI assisted oral exams.</p>
+                        <p class="list-link"><a href="https://www.brianharrington.net/" target="_blank">Check out Brian's awesome work here!</a></p>
+                    </li>
+                    <li>
+                        <strong>Teaching Assistant at UofT</strong>
+                        <p class="list-description">Under Prof. Anya Tafliovich for Discrete Math (CSCA67).</p>
+    
+                    </li>
+                    <li>
+                        <strong>Project Co-Lead at UTMIST with Neurotech</strong>
+                        <p class="list-description">Researching deep neural nets for finger intent detection from sEMG signals for post-stroke NeuroRehab.</p>
+                        <p class="list-link"><a href="https://www.utmist.ca/projects" target="_blank">Some cool projects from UTMIST here!</a></p>
+                    </li>
+                </ol>
+
+                <h2 class="section-title">Some other independent commitments</h2>
+                <ol class="about-ordered-list">
+                    <li>
+                        <strong>Academics Lead at the Data Science and Statistics Society</strong>
+                        <p class="list-description">Running an agentic and genAI bootcamp for underclassmen.</p>
+                        <p class="list-link"><a href="https://ds3utsc.com/agentic-ai" target="_blank">Check out the bootcamp here!</a></p>
+                    </li>
+                    <li>
+                        <strong>Alignment Fellow at TAISI</strong>
+                        <p class="list-description">Studying and discussing AI Alignment at the Toronto AI Safety Initiative.</p>
+                        <p class="list-link"><a href="https://taisi.ca/" target="_blank">Learn more about TAISI here!</a></p>
+                    </li>
+                </ol>
+
+                <h2 class="section-title">Some of my past work includes</h2>
+                <ol class="about-ordered-list">
+                    <li>
+                        <strong>ML Research at AI4TO</strong>
+                        <p class="list-description">Built an agentic system with Chain of Empathy Reasoning that outperformed models from OpenAI, Anthropic, Zai, Google etc. Paper out soon, presenting at TCAIREM 2025 as a 10-min podium.</p>
+                        <p class="list-link"><a href="https://ai4to.carrd.co/" target="_blank">Check out AI4TO here!</a></p>
+                    </li>
+                    <li>
+                        <strong>Math collaborator for UT Mathazine</strong>
+                        <p class="list-description">Wrote my first math article on studying collatz in mod 10.</p>
+                        <p class="list-link"><a href="https://www.utsc.utoronto.ca/ctl/ut-mathazine" target="_blank">Find the mathazine and my article here!</a></p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="blog.html" class="footer-link">Blog</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="https://github.com/Divy-1729" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Create snowflakes
+        function createSnowflakes() {
+            const snowContainer = document.createElement('div');
+            snowContainer.className = 'snow-container';
+            document.body.appendChild(snowContainer);
+            
+            const snowflakeSymbols = ['❄', '❅', '❆', '•'];
+            const numSnowflakes = 30;
+            
+            for (let i = 0; i < numSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+                
+                snowflake.style.left = Math.random() * 100 + '%';
+                const duration = 15 + Math.random() * 10;
+                snowflake.style.animationDuration = duration + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                const size = 0.5 + Math.random() * 1;
+                snowflake.style.fontSize = size + 'em';
+                snowflake.style.opacity = 0.4 + Math.random() * 0.4;
+                
+                snowContainer.appendChild(snowflake);
+            }
+            
+            const snowAccumulation = document.createElement('div');
+            snowAccumulation.className = 'snow-accumulation';
+            document.body.appendChild(snowAccumulation);
+        }
+        
+        document.addEventListener('DOMContentLoaded', createSnowflakes);
+    </script>
+</body>
+</html>
+
