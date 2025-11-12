@@ -3,146 +3,366 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Blog</title>
+  <title>All Posts</title>
+
+  <!-- Font choice: monospace for the list, a neutral sans for nav -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .blog-post-section {
-      background: rgba(30, 35, 45, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    :root{
+      --bg:#0b0b0b;
+      --panel:#0f0f0f;
+      --muted:#7e8890;
+      --text:#ffffff;
+      --accent:#9b2bff; /* purple accent for some links like in the image */
+      --separator: rgba(255,255,255,0.04);
+      --container-max: 1100px;
     }
-    
-    .blog-post-section:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      border-color: rgba(255, 255, 255, 0.2);
+
+    html,body{
+      height:100%;
+      margin:0;
+      background: var(--bg);
+      color:var(--text);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    
-    .post-preview {
-      margin: 0;
+
+    .site-header, .site-footer{
+      background: transparent;
     }
-    
+
+    .nav {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 1.25rem 1rem;
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+
+    .nav .nav-brand a {
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:0.04em;
+    }
+
+    .nav .nav-links a {
+      color:var(--muted);
+      margin-left:1rem;
+      text-decoration:none;
+      font-size:0.95rem;
+    }
+
+    /* Page container */
+    .page {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 3rem 1.25rem;
+    }
+
+    /* Header area for the posts page */
+    .posts-header {
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:1rem;
+      margin-bottom: 2rem;
+    }
+
+    .posts-title {
+      font-family: "Space Mono", monospace;
+      font-weight:700;
+      font-size: 2.5rem;
+      letter-spacing: 0.08em;
+      margin:0;
+    }
+
+    .filter-btn {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border: none;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      font-family: "Space Mono", monospace;
+      font-weight:600;
+      cursor:pointer;
+      align-self:flex-start;
+    }
+
+    /* Year heading */
+    .year {
+      font-family: "Space Mono", monospace;
+      font-size: 1.9rem;
+      margin: 1.5rem 0 1rem 0;
+      letter-spacing: 0.06em;
+    }
+
+    /* Month heading */
+    .month {
+      font-family: "Space Mono", monospace;
+      font-size: 1.25rem;
+      margin: 1rem 0 0.8rem 0;
+      color:var(--text);
+      font-weight:700;
+    }
+
+    /* Posts list layout */
+    .posts-list {
+      display:flex;
+      flex-direction:column;
+      gap: 0.75rem;
+    }
+
+    .post-row {
+      display:grid;
+      grid-template-columns: 72px 1fr;
+      gap: 1rem;
+      align-items:center;
+      padding: 0.5rem 0;
+    }
+
+    .post-date {
+      font-family: "Space Mono", monospace;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align:right;
+      padding-right: .5rem;
+    }
+
     .post-title {
-      margin: 0 0 12px 0;
-      color: #ffffff !important;
-      font-size: 24px;
-      font-weight: 600;
+      font-family: "Space Mono", monospace;
+      font-size: 1.2rem;
+      margin:0;
+      color: var(--text);
+      white-space: normal;
     }
-    
-    .post-meta {
-      color: #b0b0b0 !important;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
-    
-    .post-excerpt {
-      color: #e0e0e0 !important;
-      line-height: 1.6;
-      margin: 0;
-    }
-    
-    .post-link {
-      text-decoration: none;
+
+    .post-title a {
       color: inherit;
+      text-decoration:none;
     }
-    
-    .post-link:hover .post-title {
-      color: #66b3ff !important;
+
+    /* Accent some posts to purple like example */
+    .post-title a.accent {
+      color: var(--accent);
+    }
+
+    .post-excerpt {
+      margin: 0.25rem 0 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 70ch;
+    }
+
+    /* subtle separators between months */
+    .month + .posts-list > .post-row {
+      border-top: none;
+    }
+
+    /* separate months visually */
+    .month-block {
+      padding: 0.5rem 0 1.25rem 0;
+      border-bottom: 1px solid var(--separator);
+      margin-bottom: 1rem;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 700px) {
+      .post-row { grid-template-columns: 64px 1fr; }
+      .posts-title { font-size: 1.8rem; }
+      .filter-btn { padding: 0.5rem 0.75rem; font-size:0.85rem; }
+    }
+
+    /* footer spacing */
+    .site-footer {
+      margin-top: 3rem;
+      padding: 2rem 1rem;
+      color:var(--muted);
     }
   </style>
 </head>
 <body>
-   <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <a href="index.html">Home</a>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="blog.html" class="nav-link">Blog</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="https://github.com/Divy-1729" class="nav-link" target="_blank" rel="noopener noreferrer">
-                    GitHub ↗
-                </a>
-            </div>
-        </nav>
-    </header>
+  <!-- Header (keeps consistent site nav) -->
+  <header class="site-header">
+    <nav class="nav">
+      <div class="nav-brand">
+        <a href="index.html">Home</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="https://github.com/Divy-1729" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
 
-  <main class="main">
-    <div class="container">
-      <h1>Blog</h1>
-      <div id="blog-posts" class="posts-list"></div>
+  <main class="page">
+    <div class="posts-header">
+      <h1 class="posts-title">All Posts</h1>
+      <button class="filter-btn" aria-label="Filter posts">Filter</button>
+    </div>
+
+    <div id="posts-root">
+      <!-- Posts will be rendered here -->
     </div>
   </main>
- <footer class="footer">
-        <div class="container">
-            <div class="footer-links">
-                <a href="index.html" class="footer-link">Home</a>
-                <a href="blog.html" class="footer-link">Blog</a>
-                <a href="about.html" class="footer-link">About</a>
-                <a href="https://github.com/Divy-1729" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-            <div class="footer-copyright">
-                © 2025
-            </div>
+
+  <footer class="site-footer">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 1.25rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="color:var(--muted)">© 2025</div>
+        <div style="display:flex;gap:1rem">
+          <a href="index.html" style="color:var(--muted);text-decoration:none">Home</a>
+          <a href="blog.html" style="color:var(--muted);text-decoration:none">Blog</a>
+          <a href="about.html" style="color:var(--muted);text-decoration:none">About</a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    try {
-      const blogPosts = [
-        {
-          date: '2025-11-11',
-          title: 'My favorite music to listen to',
-          description: "I've spent some time curating my music taste. I spend a lot of time listening to music, so here are some recommendations.",
-          slug: 'music_post'
-        }
-      ];
-
-      function formatDate(iso) {
-        if (!iso) return '';
-        const d = new Date(iso);
-        if (Number.isNaN(d.getTime())) return iso;
-        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    // Blog posts data (add or update entries as you like)
+    const blogPosts = [
+      {
+        date: '2025-11-11',
+        title: 'My favorite music to listen to',
+        description: "I've spent some time curating my music taste. I spend a lot of time listening to music, so here are some recommendations.",
+        slug: 'music_post',
+        accent: false
+      },
+      {
+        date: '2025-01-15',
+        title: 'Getting Started with Modern Web Development',
+        description: 'An overview of the latest tools and frameworks that make web development faster and more efficient. Learn about the ecosystem and best practices.',
+        slug: 'getting-started-modern-web-dev',
+        accent: false
+      },
+      {
+        date: '2025-01-08',
+        title: 'Understanding Async Programming',
+        description: 'A deep dive into asynchronous programming patterns, promises, async/await, and how to handle complex asynchronous flows in JavaScript.',
+        slug: 'understanding-async-programming',
+        accent: false
+      },
+      {
+        date: '2025-01-01',
+        title: 'The Future of Frontend Frameworks',
+        description: 'Exploring emerging trends in frontend development, from server components to new rendering strategies and what they mean for developers.',
+        slug: 'future-of-frontend-frameworks',
+        accent: false
+      },
+      {
+        date: '2024-12-20',
+        title: 'Building Scalable Applications',
+        description: 'Best practices for architecting applications that can grow with your user base. Learn about microservices, caching strategies, and database optimization.',
+        slug: 'building-scalable-applications',
+        accent: false
       }
+    ];
 
-      function renderBlogPosts() {
-        const blogPostsContainer = document.getElementById('blog-posts');
-        if (!blogPostsContainer) return;
-
-        if (!blogPosts || blogPosts.length === 0) {
-          blogPostsContainer.innerHTML = '<p style="color: #b0b0b0;">Coming Soon</p>';
-          return;
-        }
-
-        const html = blogPosts.map(post => {
-          const url = `posts/${post.slug}.html`;
-          return ''
-            + '<section class="blog-post-section">'
-            +   '<article class="post-preview">'
-            +     `<a class="post-link" href="${url}">`
-            +       `<h2 class="post-title">${post.title}</h2>`
-            +     '</a>'
-            +     `<div class="post-meta">${formatDate(post.date)}</div>`
-            +     `<p class="post-excerpt">${post.description}</p>`
-            +   '</article>'
-            + '</section>';
-        }).join('\n');
-
-        blogPostsContainer.innerHTML = html;
-      }
-
-      renderBlogPosts();
-    } catch (err) {
-      console.error('Error rendering blog page:', err);
-      const blogPostsContainer = document.getElementById('blog-posts');
-      if (blogPostsContainer) {
-        blogPostsContainer.innerHTML = '<p style="color: #b0b0b0;">Error loading posts. Check console for details.</p>';
-      }
+    // Utility to group posts by year -> month
+    function groupByYearMonth(posts) {
+      const map = new Map();
+      posts.forEach(p => {
+        const d = new Date(p.date);
+        const year = d.getFullYear();
+        const monthIndex = d.getMonth(); // 0-11
+        const monthName = d.toLocaleString(undefined, { month: 'long' });
+        if (!map.has(year)) map.set(year, new Map());
+        const months = map.get(year);
+        if (!months.has(monthIndex)) months.set(monthIndex, { name: monthName, posts: [] });
+        months.get(monthIndex).posts.push(p);
+      });
+      // Sort years desc, months desc
+      const sorted = Array.from(map.entries()).sort((a,b)=>b[0]-a[0]).map(([year, monthsMap])=>{
+        const monthsArr = Array.from(monthsMap.entries()).sort((a,b)=>b[0]-a[0]).map(([idx, val])=>{
+          // sort posts newest first
+          val.posts.sort((x,y)=>new Date(y.date)-new Date(x.date));
+          return { monthIndex: idx, name: val.name, posts: val.posts };
+        });
+        return { year, months: monthsArr };
+      });
+      return sorted;
     }
+
+    function formatMMDD(dateStr){
+      const d = new Date(dateStr);
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const dd = String(d.getDate()).padStart(2,'0');
+      return `${mm}-${dd}`;
+    }
+
+    function render() {
+      const root = document.getElementById('posts-root');
+      const grouped = groupByYearMonth(blogPosts);
+      const el = document.createElement('div');
+
+      grouped.forEach(yearBlock => {
+        // Year header
+        const yearNode = document.createElement('div');
+        const y = document.createElement('div');
+        y.className = 'year';
+        y.textContent = yearBlock.year;
+        yearNode.appendChild(y);
+
+        // months
+        yearBlock.months.forEach(month => {
+          const monthBlock = document.createElement('div');
+          monthBlock.className = 'month-block';
+
+          const mn = document.createElement('div');
+          mn.className = 'month';
+          mn.textContent = month.name;
+          monthBlock.appendChild(mn);
+
+          const list = document.createElement('div');
+          list.className = 'posts-list';
+          month.posts.forEach(post => {
+            const row = document.createElement('div');
+            row.className = 'post-row';
+
+            const dateCol = document.createElement('div');
+            dateCol.className = 'post-date';
+            dateCol.textContent = formatMMDD(post.date);
+
+            const contentCol = document.createElement('div');
+            const title = document.createElement('h3');
+            title.className = 'post-title';
+            const a = document.createElement('a');
+            a.href = `posts/${post.slug}.html`;
+            a.textContent = post.title;
+            if (post.accent) a.className = 'accent';
+            title.appendChild(a);
+
+            const excerpt = document.createElement('p');
+            excerpt.className = 'post-excerpt';
+            excerpt.textContent = post.description;
+
+            contentCol.appendChild(title);
+            contentCol.appendChild(excerpt);
+
+            row.appendChild(dateCol);
+            row.appendChild(contentCol);
+            list.appendChild(row);
+          });
+
+          monthBlock.appendChild(list);
+          yearNode.appendChild(monthBlock);
+        });
+
+        el.appendChild(yearNode);
+      });
+
+      root.innerHTML = '';
+      root.appendChild(el);
+    }
+
+    render();
   </script>
 </body>
 </html>
