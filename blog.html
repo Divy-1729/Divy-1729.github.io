@@ -4,67 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>All Posts</title>
-
-  <!-- Font choice: monospace for the list, a neutral sans for nav -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="styles.css" />
   <style>
-    :root{
-      --bg:#0b0b0b;
-      --panel:#0f0f0f;
-      --muted:#7e8890;
-      --text:#ffffff;
-      --accent:#9b2bff; /* purple accent for some links like in the image */
-      --separator: rgba(255,255,255,0.04);
-      --container-max: 1100px;
-    }
-
-    html,body{
-      height:100%;
-      margin:0;
-      background: var(--bg);
-      color:var(--text);
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    .site-header, .site-footer{
-      background: transparent;
-    }
-
-    .nav {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 1.25rem 1rem;
-      max-width: var(--container-max);
-      margin: 0 auto;
-    }
-
-    .nav .nav-brand a {
-      color:var(--text);
-      text-decoration:none;
-      font-weight:700;
-      letter-spacing:0.04em;
-    }
-
-    .nav .nav-links a {
-      color:var(--muted);
-      margin-left:1rem;
-      text-decoration:none;
-      font-size:0.95rem;
-    }
-
-    /* Page container */
+    /* Layout and spacing only - do not change site background/font */
     .page {
-      max-width: var(--container-max);
+      max-width: 1100px;
       margin: 0 auto;
       padding: 3rem 1.25rem;
     }
 
-    /* Header area for the posts page */
     .posts-header {
       display:flex;
       align-items:flex-start;
@@ -74,47 +22,46 @@
     }
 
     .posts-title {
-      font-family: "Space Mono", monospace;
-      font-weight:700;
-      font-size: 2.5rem;
-      letter-spacing: 0.08em;
-      margin:0;
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 0.06em;
+      /* inherit site's font and color */
+      color: inherit;
     }
 
     .filter-btn {
       background: rgba(255,255,255,0.06);
-      color: var(--text);
+      color: inherit;
       border: none;
-      padding: 0.75rem 1rem;
+      padding: 0.6rem 1rem;
       border-radius: 10px;
-      font-family: "Space Mono", monospace;
-      font-weight:600;
       cursor:pointer;
       align-self:flex-start;
     }
 
-    /* Year heading */
     .year {
-      font-family: "Space Mono", monospace;
-      font-size: 1.9rem;
+      font-size: 1.6rem;
       margin: 1.5rem 0 1rem 0;
-      letter-spacing: 0.06em;
-    }
-
-    /* Month heading */
-    .month {
-      font-family: "Space Mono", monospace;
-      font-size: 1.25rem;
-      margin: 1rem 0 0.8rem 0;
-      color:var(--text);
       font-weight:700;
     }
 
-    /* Posts list layout */
+    .month {
+      font-size: 1.05rem;
+      margin: 1rem 0 0.6rem 0;
+      font-weight:700;
+    }
+
+    .month-block {
+      padding: 0.5rem 0 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      margin-bottom: 1rem;
+    }
+
     .posts-list {
       display:flex;
       flex-direction:column;
-      gap: 0.75rem;
+      gap: 0.25rem;
     }
 
     .post-row {
@@ -126,68 +73,46 @@
     }
 
     .post-date {
-      font-family: "Space Mono", monospace;
-      color: var(--muted);
+      color: rgba(0,0,0,0.55);
       font-size: 0.95rem;
       text-align:right;
       padding-right: .5rem;
+      opacity: 0.9;
     }
 
     .post-title {
-      font-family: "Space Mono", monospace;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin:0;
-      color: var(--text);
-      white-space: normal;
+      color: inherit;
+      text-decoration: none;
     }
 
     .post-title a {
       color: inherit;
-      text-decoration:none;
+      text-decoration: none;
     }
 
-    /* Accent some posts to purple like example */
     .post-title a.accent {
-      color: var(--accent);
+      color: #9b2bff; /* purple accent for special posts */
     }
 
     .post-excerpt {
       margin: 0.25rem 0 0 0;
-      color: var(--muted);
+      color: rgba(0,0,0,0.6);
       font-size: 0.95rem;
       max-width: 70ch;
     }
 
-    /* subtle separators between months */
-    .month + .posts-list > .post-row {
-      border-top: none;
-    }
-
-    /* separate months visually */
-    .month-block {
-      padding: 0.5rem 0 1.25rem 0;
-      border-bottom: 1px solid var(--separator);
-      margin-bottom: 1rem;
-    }
-
-    /* Responsive tweaks */
     @media (max-width: 700px) {
       .post-row { grid-template-columns: 64px 1fr; }
       .posts-title { font-size: 1.8rem; }
       .filter-btn { padding: 0.5rem 0.75rem; font-size:0.85rem; }
     }
-
-    /* footer spacing */
-    .site-footer {
-      margin-top: 3rem;
-      padding: 2rem 1rem;
-      color:var(--muted);
-    }
   </style>
 </head>
 <body>
-  <!-- Header (keeps consistent site nav) -->
-  <header class="site-header">
+  <!-- Site header - kept consistent with other pages -->
+  <header class="header">
     <nav class="nav">
       <div class="nav-brand">
         <a href="index.html">Home</a>
@@ -208,25 +133,25 @@
     </div>
 
     <div id="posts-root">
-      <!-- Posts will be rendered here -->
+      <!-- JS will render posts here -->
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div style="max-width:var(--container-max);margin:0 auto;padding:0 1.25rem;">
+  <footer class="footer">
+    <div style="max-width:1100px;margin:0 auto;padding:1rem 1.25rem;color:inherit">
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="color:var(--muted)">© 2025</div>
+        <div style="opacity:.8">© 2025</div>
         <div style="display:flex;gap:1rem">
-          <a href="index.html" style="color:var(--muted);text-decoration:none">Home</a>
-          <a href="blog.html" style="color:var(--muted);text-decoration:none">Blog</a>
-          <a href="about.html" style="color:var(--muted);text-decoration:none">About</a>
+          <a href="index.html" style="text-decoration:none;color:inherit">Home</a>
+          <a href="blog.html" style="text-decoration:none;color:inherit">Blog</a>
+          <a href="about.html" style="text-decoration:none;color:inherit">About</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Blog posts data (add or update entries as you like)
+    // Your blog posts - update as needed
     const blogPosts = [
       {
         date: '2025-11-11',
@@ -265,7 +190,6 @@
       }
     ];
 
-    // Utility to group posts by year -> month
     function groupByYearMonth(posts) {
       const map = new Map();
       posts.forEach(p => {
@@ -281,7 +205,6 @@
       // Sort years desc, months desc
       const sorted = Array.from(map.entries()).sort((a,b)=>b[0]-a[0]).map(([year, monthsMap])=>{
         const monthsArr = Array.from(monthsMap.entries()).sort((a,b)=>b[0]-a[0]).map(([idx, val])=>{
-          // sort posts newest first
           val.posts.sort((x,y)=>new Date(y.date)-new Date(x.date));
           return { monthIndex: idx, name: val.name, posts: val.posts };
         });
@@ -300,17 +223,15 @@
     function render() {
       const root = document.getElementById('posts-root');
       const grouped = groupByYearMonth(blogPosts);
-      const el = document.createElement('div');
+      const fragment = document.createDocumentFragment();
 
       grouped.forEach(yearBlock => {
-        // Year header
-        const yearNode = document.createElement('div');
+        const yearEl = document.createElement('div');
         const y = document.createElement('div');
         y.className = 'year';
         y.textContent = yearBlock.year;
-        yearNode.appendChild(y);
+        yearEl.appendChild(y);
 
-        // months
         yearBlock.months.forEach(month => {
           const monthBlock = document.createElement('div');
           monthBlock.className = 'month-block';
@@ -322,6 +243,7 @@
 
           const list = document.createElement('div');
           list.className = 'posts-list';
+
           month.posts.forEach(post => {
             const row = document.createElement('div');
             row.className = 'post-row';
@@ -336,7 +258,7 @@
             const a = document.createElement('a');
             a.href = `posts/${post.slug}.html`;
             a.textContent = post.title;
-            if (post.accent) a.className = 'accent';
+            if (post.accent) a.classList.add('accent');
             title.appendChild(a);
 
             const excerpt = document.createElement('p');
@@ -352,14 +274,14 @@
           });
 
           monthBlock.appendChild(list);
-          yearNode.appendChild(monthBlock);
+          yearEl.appendChild(monthBlock);
         });
 
-        el.appendChild(yearNode);
+        fragment.appendChild(yearEl);
       });
 
       root.innerHTML = '';
-      root.appendChild(el);
+      root.appendChild(fragment);
     }
 
     render();
